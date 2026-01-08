@@ -13,6 +13,7 @@ int main() {
     int q;
     scanf("%d" , &q);
     map<string, int>m;
+    map<string, int>::iterator it;
     int type;
     string name;
     int marks;
@@ -23,7 +24,13 @@ int main() {
             getline(cin, line);
             stringstream ss(line);       
             ss >> name >> marks;
-            m.insert(make_pair(name, marks));
+            it = m.find(name);
+            if(it != m.end()){
+                m.find(name)->second += marks;
+            }
+            else {
+                m.insert(make_pair(name, marks));
+            }
         }else if(type == 3){
             //TODO
         }
