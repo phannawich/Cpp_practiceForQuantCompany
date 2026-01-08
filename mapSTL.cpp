@@ -31,8 +31,20 @@ int main() {
             else {
                 m.insert(make_pair(name, marks));
             }
-        }else if(type == 3){
-            //TODO
+        }else if(type == 2){
+            string key;
+            cin >> key;
+            m.erase((key));
+        }
+        else if(type == 3){
+            string key;
+            cin >> key;
+            it = m.find(key);
+            if(it != m.end()){
+                cout << m.find(key)->second << endl;
+            }else{
+                cout << 0 << endl;
+            }
         }
     }
     return 0;
