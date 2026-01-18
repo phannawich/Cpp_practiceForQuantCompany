@@ -15,37 +15,24 @@ string rtrim(const string &);
  */
 
 int findSmallestMissingPositive(vector<int> orderNumbers) {
+    
     int n = orderNumbers.size();
-
-    for (int i = 0; i < n; i++)
-    {
-        while(i+1 != n){
-            if(i < 1 || i > n){
-                break;
-            }
-            
-            int temp = orderNumbers[orderNumbers[i] - 1];
-
-            if(temp == orderNumbers[i]){
-                break;
-            }
-            orderNumbers[orderNumbers[i] - 1] = orderNumbers[i];
-            orderNumbers[i] = temp;
+    for (int i = 0; i < n; i++) {
+        
+        while (orderNumbers[i] >= 1 && orderNumbers[i] <= n && orderNumbers[i] != orderNumbers[orderNumbers[i] - 1]) {
+            swap(orderNumbers[i], orderNumbers[orderNumbers[i] - 1]);
+        }
+        
+    }
+    
+    for (int i = 0; i < n; i++) {
+        if(orderNumbers[i] != i + 1){
+            return i + 1;
         }
     }
     
-    int ans = 1;
-    for (int i = 0; i < n; i++)
-    {
-        if(orderNumbers[i] == ans){
-            ans++;
-        }
-        else{
-            break;
-        }
-    }
+    return n + 1;
     
-    return ans;
 }
 
 int main()
